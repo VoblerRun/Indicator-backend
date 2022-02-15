@@ -35,12 +35,6 @@ public class AddServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ConnectionDataBase connectionDataBase = new ConnectionDataBase();
-        try {
-            connectionDataBase.readDataBase();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         // Принимаем информацию о клиенте
         String username = request.getParameter("username");
@@ -49,6 +43,14 @@ public class AddServlet extends HttpServlet {
         String password = request.getParameter("password");
         password = new String(password.getBytes("ISO-8859-1"),"UTF-8");
         System.out.println(username + ":" + password);
+
+        ConnectionDataBase connectionDataBase = new ConnectionDataBase();
+        try {
+            connectionDataBase.readDataBase(username.substring(0, 3) + password.substring(0, 3));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
         ReturnAuthorizationProfile returnAuthorizationProfile = new ReturnAuthorizationProfile();

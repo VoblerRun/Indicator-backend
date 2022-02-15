@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class ConnectionDataBase {
 
-    public void readDataBase() throws ClassNotFoundException, SQLException {
+    public void readDataBase(String index) throws ClassNotFoundException, SQLException {
         try {
 
             DatabaseConnectionData databaseConnectionData = new DatabaseConnectionData();
@@ -15,19 +15,16 @@ public class ConnectionDataBase {
 
             Connection connection = connectionPostgresAuthorization.createConnection();
 
-//            Statement statement = null;
+//
+            PreparedStatement ps = null;
+            ps = connection.prepareStatement("SELECT * FROM public.userdata WHERE id ='" + index + "'");
 
-//            PreparedStatement st = connection.prepareStatement("INSERT INTO userdata (id, login, password) VALUES (?, ?, ?)");
-//            st.setString(1, "vov123");
-//            st.setString(2, "vovchik");
-//            st.setString(3, "123456789");
-//            st.executeUpdate();
-
-//                statement = connection.createStatement();
-
-                // выполнить SQL запрос
-//                statement.execute(createTableSQL);
-
+               // Get data from Oracle Database
+              ResultSet result = ps.executeQuery();
+               while (result.next())
+               {
+                    System.out.println(">>>>> value " + result.getString(3));
+               }
 
             if (connection != null) {
                 System.out.println("Connected to the database!");
