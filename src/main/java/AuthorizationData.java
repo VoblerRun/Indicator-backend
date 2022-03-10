@@ -1,4 +1,4 @@
-public class DatabaseConnectionData {
+public class AuthorizationData {
 
     private String url = "";
 

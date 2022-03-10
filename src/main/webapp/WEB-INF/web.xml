@@ -6,12 +6,12 @@
   <display-name>Archetype Created Web Application</display-name>
 
   <servlet>
-    <servlet-name>add</servlet-name>
-    <servlet-class>AddServlet</servlet-class>
+    <servlet-name>authorization</servlet-name>
+    <servlet-class>AuthorizationServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>add</servlet-name>
+    <servlet-name>authorization</servlet-name>
     <url-pattern>/LogLet</url-pattern>
   </servlet-mapping>
 

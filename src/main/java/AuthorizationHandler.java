@@ -1,17 +1,17 @@
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 
-public class ConnectionDataBase {
+public class AuthorizationHandler {
 
     public void readDataBase(String index) throws ClassNotFoundException, SQLException {
         try {
 
-            DatabaseConnectionData databaseConnectionData = new DatabaseConnectionData();
-            databaseConnectionData.setUrl("jdbc:postgresql://localhost:5432/indicatorbase");
-            databaseConnectionData.setUser("postgres");
-            databaseConnectionData.setPassword("3219652");
+            AuthorizationData authorizationData = new AuthorizationData();
+            authorizationData.setUrl("jdbc:postgresql://localhost:5432/indicatorbase");
+            authorizationData.setUser("postgres");
+            authorizationData.setPassword("3219652");
 
-            ConnectionPostgresAuthorization connectionPostgresAuthorization = new ConnectionPostgresAuthorization(databaseConnectionData);
+            ConnectionPostgresAuthorization connectionPostgresAuthorization = new ConnectionPostgresAuthorization(authorizationData);
 
             Connection connection = connectionPostgresAuthorization.createConnection();
 

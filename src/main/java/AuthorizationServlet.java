@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class AddServlet extends HttpServlet {
+public class AuthorizationServlet extends HttpServlet {
 
     public class ReturnAuthorizationProfile{
         public String tokenSession = "";
@@ -44,9 +44,9 @@ public class AddServlet extends HttpServlet {
         password = new String(password.getBytes("ISO-8859-1"),"UTF-8");
         System.out.println(username + ":" + password);
 
-        ConnectionDataBase connectionDataBase = new ConnectionDataBase();
+        AuthorizationHandler authorizationHandler = new AuthorizationHandler();
         try {
-            connectionDataBase.readDataBase(username.substring(0, 3) + password.substring(0, 3));
+            authorizationHandler.readDataBase(username.substring(0, 3) + password.substring(0, 3));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,11 +64,10 @@ public class AddServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         String objectAuthorization = mapper.writeValueAsString(returnAuthorizationProfile);
         System.out.println(objectAuthorization);
-        if( true ){
+        if(true){
             out.print (objectAuthorization);
-//            out.print ("«Пароль:» + пароль");
         }else{
-            out.print("false");
+            out.print("Error");
         }
         out.flush();
         out.close();
